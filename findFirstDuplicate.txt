@@ -1,0 +1,9 @@
+Time Given: 15min
+Time Left Over: -5min (Took 20 min)
+
+Retrospective:
+Got the brute force almost working, but realized that I would not be able to pass all test cases. 
+Went back to the drawing board and decided to sort the array first before checking for matches so 
+that I dont have to loop through the entire array each time.
+After sorting the array I can just go throuh and check each position against the next position in the array, 
+if they are identical then we know that the array contains a duplicate.
