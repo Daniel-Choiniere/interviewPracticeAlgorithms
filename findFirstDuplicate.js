@@ -5,8 +5,7 @@ let a = [2, 4, 2, 3];
 
 // answer is 4 (first duplicate number in array)
 
-function containsDuplicates(a) 
-{
+function firstDuplicate(a) {
     var seen = {}
     
     for (let num = 0; num < a.length; num++){
@@ -15,7 +14,7 @@ function containsDuplicates(a)
         }
         seen[a[num]] = true;
     }
-    return false;
+    return -1;
 }
 
 console.log(containsDuplicates(a));
