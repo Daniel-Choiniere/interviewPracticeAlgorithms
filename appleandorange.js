@@ -41,7 +41,7 @@ function countApplesAndOranges(s, t, a, b, apples, oranges) {
             appleCounter++;
         } 
     }
-
+    
     for (let j = 0; j <= oranges.length; j++) {
         let orangeLocation = oranges[j] + b;
         // console.log(orangeLocation);
@@ -49,8 +49,6 @@ function countApplesAndOranges(s, t, a, b, apples, oranges) {
             orangeCounter++;
         }
     }
-
-
     console.log(appleCounter)
     console.log(orangeCounter);
 }
