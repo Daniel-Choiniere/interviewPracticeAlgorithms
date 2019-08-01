@@ -1,8 +1,8 @@
 function yearCheck(month, year) {
     let today = new Date();
     let userDate = new Date(year + '-' + month);
-    // console.log(today);
-    // console.log(userDate);
+    console.log(today);
+    console.log(userDate);
 
     let timePassed = today - userDate;
 
@@ -10,7 +10,7 @@ function yearCheck(month, year) {
     let years = days / 365
     return years.toFixed(2);
 }
-
+console.log(yearCheck(6, 1919));
 console.log(yearCheck(6, 1985));
 console.log(yearCheck(7, 2018));
 console.log(yearCheck(2, 2018));
