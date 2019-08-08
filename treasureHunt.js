@@ -35,30 +35,31 @@ function treasureHuntWrap(gridSize, startx, starty, direction, steps) {
         if (direction[i] === "N") {
             cords = [cords[0], cords[1] + steps[i]];
             if (cords[1] > gridSize){
-                cords = [cords[0], (cords[1] % gridSize + steps[i]) ];
+                cords = [cords[0], (cords[1] % gridSize) ];
             }
         } 
         else if (direction[i] === "S") {
             cords = [cords[0], cords[1] - steps[i]];
             if (cords[1] < 0){
-                cords = [cords[0], (cords[1] % gridSize + steps[i]) ];
+                cords = [cords[0], (cords[1] % gridSize) + gridSize];
             }
         }
         else if (direction[i] === "E") {
             cords = [cords[0] + steps[i], cords[1]];
             if (cords[0] > gridSize){
-                cords = [cords[0] % gridSize + steps[i], cords[1]];
+                cords = [cords[0] % gridSize, cords[1]];
             }
         }
         else if (direction[i] === "W") {
             cords = [cords[0] - steps[i], cords[1]];
             if (cords[0] < 0){
-                cords = [cords[0] % gridSize - steps[i] , cords[1]];
+                cords = [(cords[0] % gridSize) + gridSize, cords[1]];
             }
         }
     }
     console.log(cords);
 };
+
 
 
 console.log(treasureHuntWrap(10, 2, 2, ["N", "E", "S", "W"], [5, 3, 2, 1] ));
