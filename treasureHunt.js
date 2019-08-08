@@ -30,6 +30,7 @@
 // VERSION 2.0
 function treasureHuntWrap(gridSize, startx, starty, direction, steps) {
     let cords = [startx, starty];
+
     for (let i = 0; i < steps.length; i++) {
         if (direction[i] === "N") {
             cords = [cords[0], cords[1] + steps[i]];
@@ -59,12 +60,6 @@ function treasureHuntWrap(gridSize, startx, starty, direction, steps) {
     console.log(cords);
 };
 
-// if (instructions[j].heading == "N") {
-//             currentPosition[1] += instructions[j].steps;
-//             if (currentPosition[1] > size) {
-//                 currentPosition[1] = currentPosition[1] % size;
-//             }
-//         }
 
 console.log(treasureHuntWrap(10, 2, 2, ["N", "E", "S", "W"], [5, 3, 2, 1] ));
 console.log(treasureHuntWrap(10, 3, 3, ["N", "E", "S", "W"], [5, 3, 2, 1] ));
