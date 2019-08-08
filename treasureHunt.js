@@ -64,4 +64,4 @@ function treasureHuntWrap(gridSize, startx, starty, direction, steps) {
 
 console.log(treasureHuntWrap(10, 2, 2, ["N", "E", "S", "W"], [5, 3, 2, 1] ));
 console.log(treasureHuntWrap(10, 3, 3, ["N", "E", "S", "W"], [5, 3, 2, 1] ));
-console.log(treasureHuntWrap(10, 2, 2, ["N", "E", "S", "W"], [5, 3, 2, 6] ));
+console.log(treasureHuntWrap(10, 3, 3, ["N", "E", "S", "W"], [5, 3, 2, 6] ));
