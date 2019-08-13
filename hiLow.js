@@ -35,6 +35,7 @@
 
 // // VERSION 1.1
 function value(card) {
+  //   console.log(card);
   switch (card) {
     case "J":
       return 11;
@@ -44,11 +45,22 @@ function value(card) {
       return 13;
     case "A":
       return 14;
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+    case 10:
+      return card;
   }
 }
 
 function hiLow(currentCard) {
-  let cards = ["J", "Q", "K", "A"];
+  let cards = ["J", "Q", "K", "A", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   let currentCardValue = value(currentCard);
   var nextCardValue = value(cards[Math.floor(Math.random() * cards.length)]);
@@ -62,4 +74,4 @@ function hiLow(currentCard) {
   }
 }
 
-console.log(hiLow("Q", "A"));
+console.log(hiLow("J", "A"));
