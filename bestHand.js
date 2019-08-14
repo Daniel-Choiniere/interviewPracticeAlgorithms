@@ -152,15 +152,19 @@
 
 // console.log(bestHand(handOne, handTwo));
 
-// VERSION 1.2
+// VERSION 1.2 Ensure the randomizer does not pick a card that is already picked
 function randomDeck() {
   let deck = ["J", "Q", "K", "A", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   let newDeck = [];
   for (let i = 0; i < 7; i++) {
-    let randomCard = deck[Math.floor(Math.random() * deck.length)];
+    while (newDeck.length < 7) {
+      let randomCard = deck[Math.floor(Math.random() * deck.length)];
 
-    newDeck.push(randomCard);
+      if (newDeck.indexOf(randomCard) < 0) {
+        newDeck.push(randomCard);
+      }
+    }
   }
 
   return newDeck;
@@ -233,9 +237,9 @@ function bestHand(playerOne, playerTwo) {
 }
 
 let handOne = randomDeck();
-// console.log(handOne);
+console.log(handOne);
 
 let handTwo = randomDeck();
-// console.log(handTwo);
+console.log(handTwo);
 
 console.log(bestHand(handOne, handTwo));
