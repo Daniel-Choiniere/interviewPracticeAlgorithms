@@ -152,12 +152,12 @@
 
 // console.log(bestHand(handOne, handTwo));
 
-// VERSION 1.2 Ensure the randomizer does not pick a card that is already picked
+// VERSION 1.2/1.3 Ensure the randomizer does not pick a card that is already picked/ Use the deck to create two hands
 function randomDeck() {
   let deck = ["J", "Q", "K", "A", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   let newDeck = [];
-  for (let i = 0; i < 7; i++) {
+  for (let cardInDeck = 0; cardInDeck < 7; cardInDeck++) {
     while (newDeck.length < 7) {
       let randomCard = deck[Math.floor(Math.random() * deck.length)];
 
@@ -172,8 +172,8 @@ function randomDeck() {
 
 function value(deck) {
   let hand = [];
-  for (let i = 0; i < deck.length; i++) {
-    switch (deck[i]) {
+  for (let cardInHand = 0; cardInHand < deck.length; cardInHand++) {
+    switch (deck[cardInHand]) {
       case "J":
         hand.push(11);
         break;
@@ -196,7 +196,7 @@ function value(deck) {
       case 8:
       case 9:
       case 10:
-        hand.push(deck[i]);
+        hand.push(deck[cardInHand]);
         break;
     }
   }
@@ -206,20 +206,15 @@ function value(deck) {
 
 function total(hand) {
   let total = 0;
-  for (let i = 0; i < hand.length; i++) {
-    total += hand[i];
+  for (let card = 0; card < hand.length; card++) {
+    total += hand[card];
   }
   return total;
 }
 
 function bestHand(playerOne, playerTwo) {
-  //   console.log(playerOne);
-  //   console.log(playerTwo);
   let playerOneTotalValue = value(playerOne);
   let playerTwoTotalValue = value(playerTwo);
-
-  //   console.log(playerOneTotalValue);
-  //   console.log(playerTwoTotalValue);
 
   let playerOneTotal = total(playerOneTotalValue);
   let playerTwoTotal = total(playerTwoTotalValue);
@@ -237,9 +232,9 @@ function bestHand(playerOne, playerTwo) {
 }
 
 let handOne = randomDeck();
-console.log(handOne);
+console.log("Player one hand:", handOne);
 
 let handTwo = randomDeck();
-console.log(handTwo);
+console.log("Player Two Hand:", handTwo);
 
 console.log(bestHand(handOne, handTwo));
