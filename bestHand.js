@@ -152,8 +152,8 @@
 
 // console.log(bestHand(handOne, handTwo));
 
-// VERSION 1.2/1.3 Ensure the randomizer does not pick a card that is already picked/ Use the deck to create two hands
-function randomDeck() {
+// VERSION 1.2/1.3 Ensure the randomizer does not pick a card that is already picked/ Create two random hands
+function randomHand() {
   let deck = ["J", "Q", "K", "A", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   let newDeck = [];
@@ -166,7 +166,6 @@ function randomDeck() {
       }
     }
   }
-
   return newDeck;
 }
 
@@ -212,9 +211,14 @@ function total(hand) {
   return total;
 }
 
-function bestHand(playerOne, playerTwo) {
-  let playerOneTotalValue = value(playerOne);
-  let playerTwoTotalValue = value(playerTwo);
+function bestHand() {
+  let handOne = randomHand();
+  console.log("Player one hand:", handOne);
+  let handTwo = randomHand();
+  console.log("Player Two Hand:", handTwo);
+
+  let playerOneTotalValue = value(handOne);
+  let playerTwoTotalValue = value(handTwo);
 
   let playerOneTotal = total(playerOneTotalValue);
   let playerTwoTotal = total(playerTwoTotalValue);
@@ -223,18 +227,12 @@ function bestHand(playerOne, playerTwo) {
   console.log("Player two total:", playerTwoTotal);
 
   if (playerOneTotal < playerTwoTotal) {
-    console.log("PLAYER TWO WINS!!!");
+    console.log("\u001b[" + 32 + "m" + "PLAYER TWO WINS!!!" + "\u001b[0m");
   } else if (playerOneTotal === playerTwoTotal) {
-    console.log("TIE");
+    console.log("\u001b[" + 32 + "m" + "TIE" + "\u001b[0m");
   } else {
-    console.log("PLAYER ONE WINS");
+    console.log("\u001b[" + 32 + "m" + "PLAYER ONE WINS!!!" + "\u001b[0m");
   }
 }
 
-let handOne = randomDeck();
-console.log("Player one hand:", handOne);
-
-let handTwo = randomDeck();
-console.log("Player Two Hand:", handTwo);
-
-console.log(bestHand(handOne, handTwo));
+bestHand();
