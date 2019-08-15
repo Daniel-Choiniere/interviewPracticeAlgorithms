@@ -77,6 +77,21 @@
 //   console.log(hiLow("J", "A"));
 
 // VERSION 1.2
+let cards = ["J", "Q", "K", "A", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+// let suits = ["spades", "diamonds", "clubs", "hearts"];
+
+// function createDeck() {
+//   var deck = new Array();
+
+//   for (var i = 0; i < suits.length; i++) {
+//     for (var x = 0; x < cards.length; x++) {
+//       var card = { Value: cards[x], Suit: suits[i] };
+//       deck.push(card);
+//     }
+//   }
+//   console.log(deck);
+// }
+
 function value(card) {
   switch (card) {
     case "J":
@@ -87,16 +102,27 @@ function value(card) {
       return 13;
     case "A":
       return 14;
-    case !isNaN:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+    case 10:
       return card;
   }
 }
 
 function hiLow(currentCard) {
-  let cards = ["J", "Q", "K", "A", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
   let currentCardValue = value(currentCard);
-  var nextCardValue = value(cards[Math.floor(Math.random() * cards.length)]);
+  let nextCard = cards[Math.floor(Math.random() * cards.length)];
+  let nextCardValue = value(nextCard);
+
+  console.log("Current card", currentCard);
+  console.log("Next card:", nextCard);
 
   if (currentCardValue < nextCardValue) {
     console.log("LOSER");
@@ -107,4 +133,5 @@ function hiLow(currentCard) {
   }
 }
 
-console.log(hiLow("J"));
+hiLow("J");
+// createDeck();
