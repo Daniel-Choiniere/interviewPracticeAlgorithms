@@ -134,4 +134,3 @@ function hiLow(currentCard) {
 }
 
 hiLow("J");
-// createDeck();

@@ -260,12 +260,14 @@ function randomHand() {
   for (let cardInDeck = 0; cardInDeck < 7; cardInDeck++) {
     while (newDeck.length < 7) {
       let randomCard = deck[Math.floor(Math.random() * deck.length)];
+      console.log("Random Card:", randomCard.Value);
 
-      if (newDeck.indexOf(randomCard) < 0) {
-        newDeck.push(randomCard);
-      }
+      //   if (newDeck.indexOf(randomCard.Value) < 0) {
+      newDeck.push(randomCard);
+      //   }
     }
   }
+  console.log("The new deck", newDeck);
   return newDeck;
 }
 
@@ -314,9 +316,9 @@ function total(hand) {
 
 function bestHand() {
   let handOne = randomHand();
-  console.log("Player one hand:", handOne);
   let handTwo = randomHand();
-  console.log("Player Two Hand:", handTwo);
+  //   console.log("Player one hand:\n", handOne);
+  //   console.log("Player Two Hand:\n", handTwo);
 
   let playerOneTotalValue = value(handOne);
   let playerTwoTotalValue = value(handTwo);
@@ -326,15 +328,15 @@ function bestHand() {
   let playerOneTotal = total(playerOneTotalValue);
   let playerTwoTotal = total(playerTwoTotalValue);
 
-  console.log("Player one total:", playerOneTotal);
-  console.log("Player two total:", playerTwoTotal);
+  //   console.log("Player one total:", playerOneTotal);
+  //   console.log("Player two total:", playerTwoTotal);
 
   if (playerOneTotal < playerTwoTotal) {
-    console.log("\u001b[" + 32 + "m" + "PLAYER TWO WINS!!!" + "\u001b[0m");
+    // console.log("\u001b[" + 32 + "m" + "PLAYER TWO WINS!!!" + "\u001b[0m");
   } else if (playerOneTotal === playerTwoTotal) {
-    console.log("\u001b[" + 32 + "m" + "TIE" + "\u001b[0m");
+    // console.log("\u001b[" + 32 + "m" + "TIE" + "\u001b[0m");
   } else {
-    console.log("\u001b[" + 32 + "m" + "PLAYER ONE WINS!!!" + "\u001b[0m");
+    // console.log("\u001b[" + 32 + "m" + "PLAYER ONE WINS!!!" + "\u001b[0m");
   }
 }
 
