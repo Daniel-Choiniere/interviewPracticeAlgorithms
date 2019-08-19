@@ -38,21 +38,13 @@
 //     return tripleRoll;
 //   };
 
-const readline = require("readline");
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-rl.question("What die would you like to keep? ", answer => {
-  // TODO: Log the answer in a database
-  console.log(`You would like to keep: ${answer}`);
-
-  rl.close();
-});
-
-const pickDie = () => {};
+const keptDice = answer => {
+  const allKeptDice = [];
+  for (let dice = 0; dice < answer.length; dice++) {
+    allKeptDice.push(answer[dice]);
+  }
+  console.log(allKeptDice);
+};
 
 const rollDice = () => {
   const die = [1, 2, 3, 4, 5, 6];
@@ -68,6 +60,20 @@ const rollDice = () => {
 
 const yahtzee = () => {
   rollDice();
+
+  const readline = require("readline");
+
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  });
+
+  rl.question("What dice would you like to keep? ", answer => {
+    console.log(`You would like to keep: ${answer}`);
+
+    keptDice(answer);
+    rl.close();
+  });
 };
 
 yahtzee();
