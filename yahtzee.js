@@ -17,7 +17,7 @@ const rollDice = rolls => {
 
 const yahtzee = () => {
   var rolledArray = rollDice(5);
-  console.log(rolledArray);
+  console.log("Our original array is:", rolledArray);
 
   const readline = require("readline");
 
@@ -30,7 +30,7 @@ const yahtzee = () => {
     console.log(`You would like to keep: ${answer}`);
 
     let allKeptDice = keptDice(answer);
-    console.log(allKeptDice);
+    console.log("We will keep:", allKeptDice);
 
     for (let i = 0; i < allKeptDice.length; i++) {
       var index = rolledArray.indexOf(allKeptDice[i]);
@@ -50,6 +50,11 @@ const yahtzee = () => {
       rolledArray.unshift(newRolledArray[j]);
     }
     console.log("Our dice after the second roll are:", rolledArray);
+
+    const allEqual = arr => arr.every(v => v === arr[0]);
+    if (allEqual(rolledArray) === true) {
+      console.log("YAHTZEE!!!");
+    }
 
     rl.close();
   });
