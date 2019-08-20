@@ -1,43 +1,3 @@
-// const chunkArray = (array, chunk_size) => {
-//   const tripleRoll = [];
-
-//   while (array.length) {
-//     tripleRoll.push(array.splice(0, chunk_size));
-//   }
-//   return tripleRoll;
-// };
-
-// const rollDice = () => {
-//   const die = [1, 2, 3, 4, 5, 6];
-//   let allRolls = [];
-//   for (let tripleRoll = 0; tripleRoll < 3; tripleRoll++) {
-//     for (let rolls = 0; rolls < 5; rolls++) {
-//       let randomRoll = die[Math.floor(Math.random() * die.length)];
-//       allRolls.push(randomRoll);
-//     }
-//   }
-//   //   console.log(allRolls);
-//   const threeRolls = chunkArray(allRolls, 5);
-//   console.log(threeRolls);
-//   return threeRolls;
-// };
-
-// const yahtzee = () => {
-//   console.log("Hello World");
-//   rollDice();
-// };
-
-// yahtzee();
-
-// const chunkArray = (array, chunk_size) => {
-//     const tripleRoll = [];
-
-//     while (array.length) {
-//       tripleRoll.push(array.splice(0, chunk_size));
-//     }
-//     return tripleRoll;
-//   };
-
 const keptDice = answer => {
   let allKeptDice = [];
   for (let dice = 0; dice < answer.length; dice++) {
@@ -46,10 +6,9 @@ const keptDice = answer => {
   return allKeptDice;
 };
 
-const rollDice = () => {
-  const die = [1, 2, 3, 4, 5, 6];
+const rollDice = rolls => {
   let allRolls = [];
-  for (let rolls = 0; rolls < 5; rolls++) {
+  for (roll = 0; roll < rolls; roll++) {
     let randomRoll = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
     allRolls.push(randomRoll);
   }
@@ -57,7 +16,7 @@ const rollDice = () => {
 };
 
 const yahtzee = () => {
-  var rolledArray = rollDice();
+  var rolledArray = rollDice(5);
   console.log(rolledArray);
 
   const readline = require("readline");
@@ -73,22 +32,25 @@ const yahtzee = () => {
     let allKeptDice = keptDice(answer);
     console.log(allKeptDice);
 
-    // rolledArray.splice(rolledArray.indexOf(allKeptDice), 1);
-    // // filteredArray = rolledArray.filter(item => !allKeptDice.includes(item));
-
-    // console.log(rolledArray);
-
-    // Find and remove item from an array
-
-    // console.log(allKeptDice.length);
-
     for (let i = 0; i < allKeptDice.length; i++) {
       var index = rolledArray.indexOf(allKeptDice[i]);
+      //   console.log(allKeptDice);
       if (index != -1) {
-        rolledArray.splice(i, 1);
+        rolledArray.splice(index, 1);
       }
     }
-    console.log(rolledArray);
+
+    console.log("After splice", rolledArray);
+
+    let newRolledArray = rollDice(allKeptDice.length);
+    console.log("On our second roll we get", newRolledArray);
+
+    // let secondArray = [];
+    for (let j = 0; j < newRolledArray.length; j++) {
+      rolledArray.unshift(newRolledArray[j]);
+    }
+    console.log("Our dice after the second roll are:", rolledArray);
+
     rl.close();
   });
 };
