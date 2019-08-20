@@ -55,17 +55,13 @@ const yahtzee = () => {
     console.log("Our dice after the second roll are:", rolledArray);
 
     rl.question("What dice would you like to roll agian? ", answer => {
-      // returns the value(s) we want to reroll
       let rollAgainDice = rollAgain(answer);
 
-      // splices out the chose value(s) from original array
       removeToBeRolledAgain(rolledArray, rollAgainDice);
 
-      // Re rolls the chosen die/dice
       let newRolledArray = rollDice(rollAgainDice.length);
       console.log("On our third roll we get", newRolledArray);
 
-      // adds the newly rolled dice to the original array
       for (let j = 0; j < newRolledArray.length; j++) {
         rolledArray.unshift(newRolledArray[j]);
       }
