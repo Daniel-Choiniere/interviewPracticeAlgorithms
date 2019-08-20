@@ -1,3 +1,14 @@
+const readline = require("readline");
+
+const removeToBeRolledAgain = (ogArray, rollAgain) => {
+  for (let i = 0; i < rollAgain.length; i++) {
+    var index = ogArray.indexOf(rollAgain[i]);
+    if (index != -1) {
+      ogArray.splice(index, 1);
+    }
+  }
+};
+
 const rollAgain = answer => {
   let rollAgainDice = [];
   for (let dice = 0; dice < answer.length; dice++) {
@@ -16,10 +27,8 @@ const rollDice = rolls => {
 };
 
 const yahtzee = () => {
-  var rolledArray = rollDice(5);
+  rolledArray = rollDice(5);
   console.log("Our original array is:", rolledArray);
-
-  const readline = require("readline");
 
   const rl = readline.createInterface({
     input: process.stdin,
@@ -29,13 +38,7 @@ const yahtzee = () => {
   rl.question("What dice would you like to roll agian? ", answer => {
     let rollAgainDice = rollAgain(answer);
 
-    for (let i = 0; i < rollAgainDice.length; i++) {
-      var index = rolledArray.indexOf(rollAgainDice[i]);
-      //   console.log(rollAgainDice);
-      if (index != -1) {
-        rolledArray.splice(index, 1);
-      }
-    }
+    removeToBeRolledAgain(rolledArray, rollAgainDice);
 
     console.log("After splice", rolledArray);
 
