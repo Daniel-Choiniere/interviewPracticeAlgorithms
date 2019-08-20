@@ -1,9 +1,9 @@
-const keptDice = answer => {
-  let allKeptDice = [];
+const rollAgain = answer => {
+  let rollAgainDice = [];
   for (let dice = 0; dice < answer.length; dice++) {
-    allKeptDice.push(parseInt(answer[dice]));
+    rollAgainDice.push(parseInt(answer[dice]));
   }
-  return allKeptDice;
+  return rollAgainDice;
 };
 
 const rollDice = rolls => {
@@ -26,15 +26,12 @@ const yahtzee = () => {
     output: process.stdout
   });
 
-  rl.question("What dice would you like to keep? ", answer => {
-    console.log(`You would like to keep: ${answer}`);
+  rl.question("What dice would you like to roll agian? ", answer => {
+    let rollAgainDice = rollAgain(answer);
 
-    let allKeptDice = keptDice(answer);
-    console.log("We will keep:", allKeptDice);
-
-    for (let i = 0; i < allKeptDice.length; i++) {
-      var index = rolledArray.indexOf(allKeptDice[i]);
-      //   console.log(allKeptDice);
+    for (let i = 0; i < rollAgainDice.length; i++) {
+      var index = rolledArray.indexOf(rollAgainDice[i]);
+      //   console.log(rollAgainDice);
       if (index != -1) {
         rolledArray.splice(index, 1);
       }
@@ -42,7 +39,7 @@ const yahtzee = () => {
 
     console.log("After splice", rolledArray);
 
-    let newRolledArray = rollDice(allKeptDice.length);
+    let newRolledArray = rollDice(rollAgainDice.length);
     console.log("On our second roll we get", newRolledArray);
 
     // let secondArray = [];
