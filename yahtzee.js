@@ -39,11 +39,11 @@
 //   };
 
 const keptDice = answer => {
-  const allKeptDice = [];
+  let allKeptDice = [];
   for (let dice = 0; dice < answer.length; dice++) {
-    allKeptDice.push(answer[dice]);
+    allKeptDice.push(parseInt(answer[dice]));
   }
-  console.log(allKeptDice);
+  return allKeptDice;
 };
 
 const rollDice = () => {
@@ -53,13 +53,12 @@ const rollDice = () => {
     let randomRoll = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
     allRolls.push(randomRoll);
   }
-
-  console.log(allRolls);
   return allRolls;
 };
 
 const yahtzee = () => {
-  rollDice();
+  var rolledArray = rollDice();
+  console.log(rolledArray);
 
   const readline = require("readline");
 
@@ -71,7 +70,25 @@ const yahtzee = () => {
   rl.question("What dice would you like to keep? ", answer => {
     console.log(`You would like to keep: ${answer}`);
 
-    keptDice(answer);
+    let allKeptDice = keptDice(answer);
+    console.log(allKeptDice);
+
+    // rolledArray.splice(rolledArray.indexOf(allKeptDice), 1);
+    // // filteredArray = rolledArray.filter(item => !allKeptDice.includes(item));
+
+    // console.log(rolledArray);
+
+    // Find and remove item from an array
+
+    // console.log(allKeptDice.length);
+
+    for (let i = 0; i < allKeptDice.length; i++) {
+      var index = rolledArray.indexOf(allKeptDice[i]);
+      if (index != -1) {
+        rolledArray.splice(i, 1);
+      }
+    }
+    console.log(rolledArray);
     rl.close();
   });
 };
