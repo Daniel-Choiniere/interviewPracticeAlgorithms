@@ -72,10 +72,12 @@ const deckRacer = () => {
   let playerOneTotalRolls = 0;
   let playerTwoTotalRolls = 0;
 
+  //   the size of our dice to roll
   let diceSize = 6;
 
-  while (playerTwoPosition < 52 || playerOnePosition < 52) {
-    for (let j = 1; j < cleanedDeck.length; j++) {
+  // loop threw the deck until a player has reached the last card (card 51)
+  for (let j = 1; j < cleanedDeck.length; j++) {
+    while (playerTwoPosition < 51 && playerOnePosition < 51) {
       let firstRoll = rollDice(diceSize);
       let secondRoll = rollDice(diceSize);
 
@@ -101,10 +103,13 @@ const deckRacer = () => {
   console.log("Player one total rolls", playerOneTotalRolls);
   console.log("Player two total rolls", playerTwoTotalRolls);
 
+  //   once the loop exits we check to see who had the least amount of rolls, and declare that player the winner
   if (playerOneTotalRolls < playerTwoTotalRolls) {
     console.log("Player one wins!!!");
-  } else {
+  } else if (playerOneTotalRolls > playerTwoTotalRolls) {
     console.log("Player two wins!!!");
+  } else {
+    console.log("Game is a tie");
   }
 };
 
