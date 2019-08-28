@@ -14,19 +14,19 @@ function createDeck() {
   return deck;
 }
 
-function randomHand() {
+const randomHand = deckSize => {
   let deck = createDeck();
   //   console.log(deck);
 
   let newDeck = [];
 
-  while (newDeck.length < 52) {
+  while (newDeck.length < deckSize) {
     let randomCard = deck[Math.floor(Math.random() * deck.length)];
 
     newDeck.push(randomCard);
   }
   return newDeck;
-}
+};
 
 const checkStartAndEnd = deck => {
   //   console.log(deck[51]);
@@ -59,13 +59,53 @@ const checkStartAndEnd = deck => {
 
 const deckRacer = () => {
   // create our deck of 52 cards
-  let deck = randomHand();
+  let deck = randomHand(52);
   // clean up the deck so we don't have values 1, 2, 6, 7 in the first, second, last, or second to last positions
   let cleanedDeck = checkStartAndEnd(deck);
-  //   console.log(cleanedDeck);
+  console.log("Our deck: ", cleanedDeck);
 
+  //   keep track of how far along player is through deck (gameboard)
   let playerOnePosition = -1;
   let playerTwoPosition = -1;
+
+  //   keep track of how many rolls each player takes
+  let playerOneTotalRolls = 0;
+  let playerTwoTotalRolls = 0;
+
+  let diceSize = 6;
+
+  while (playerTwoPosition < 52 || playerOnePosition < 52) {
+    for (let j = 1; j < cleanedDeck.length; j++) {
+      let firstRoll = rollDice(diceSize);
+      let secondRoll = rollDice(diceSize);
+
+      console.log("Player one roll: ", firstRoll);
+      console.log("Player one position", playerOnePosition);
+
+      console.log("Player two roll: ", secondRoll);
+      console.log("Player two position", playerTwoPosition);
+
+      if (firstRoll >= cleanedDeck[j]) {
+        playerOnePosition += j;
+      } else if (firstRoll < cleanedDeck[j]) {
+        playerOneTotalRolls++;
+      }
+      if (secondRoll >= cleanedDeck[j]) {
+        playerTwoPosition += j;
+      } else if (secondRoll < cleanedDeck[j]) {
+        playerTwoTotalRolls++;
+      }
+    }
+  }
+
+  console.log("Player one total rolls", playerOneTotalRolls);
+  console.log("Player two total rolls", playerTwoTotalRolls);
+
+  if (playerOneTotalRolls < playerTwoTotalRolls) {
+    console.log("Player one wins!!!");
+  } else {
+    console.log("Player two wins!!!");
+  }
 };
 
 deckRacer();
