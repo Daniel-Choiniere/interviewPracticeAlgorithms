@@ -59,7 +59,7 @@ const checkStartAndEnd = deck => {
 
 const deckRacer = () => {
   // create our deck of 52 cards
-  let deck = randomHand(52);
+  let deck = randomHand(27);
   // clean up the deck so we don't have values 1, 2, 6, 7 in the first, second, last, or second to last positions
   let cleanedDeck = checkStartAndEnd(deck);
   console.log("Our deck: ", cleanedDeck);
@@ -75,9 +75,9 @@ const deckRacer = () => {
   //   the size of our dice to roll
   let diceSize = 6;
 
-  // loop threw the deck until a player has reached the last card (card 51)
+  // loop threw the deck until a player has reached the last card (card 27)
   for (let j = 1; j < cleanedDeck.length; j++) {
-    while (playerTwoPosition < 51 && playerOnePosition < 51) {
+    while (playerTwoPosition < 27 && playerOnePosition < 27) {
       let firstRoll = rollDice(diceSize);
       let secondRoll = rollDice(diceSize);
 
@@ -87,6 +87,8 @@ const deckRacer = () => {
       console.log("Player two roll: ", secondRoll);
       console.log("Player two position", playerTwoPosition);
 
+      //   if the current player one/two roll is greater than the current card value than we increase the position by the card index
+      //   if not greater than we increase the rolls, and try again
       if (firstRoll >= cleanedDeck[j]) {
         playerOnePosition += j;
       } else if (firstRoll < cleanedDeck[j]) {
@@ -114,3 +116,6 @@ const deckRacer = () => {
 };
 
 deckRacer();
+
+// start with just moving two markers down the gameboard
+// apply dice value to marker and move on before trying to deal with stop value
