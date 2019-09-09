@@ -28,7 +28,7 @@ const randomHand = deckSize => {
   return newDeck;
 };
 
-const checkStartAndEnd = deck => {
+const checkStartAndEnd = (deck, deckSize) => {
   //   console.log(deck[51]);
   while (deck[0] === 1 || deck[0] === 2 || deck[0] === 6 || deck[0] === 7) {
     [deck[0], deck[Math.floor(Math.random() * deck.length)]] = [
@@ -42,26 +42,38 @@ const checkStartAndEnd = deck => {
       deck[1]
     ];
   }
-  while (deck[50] === 1 || deck[50] === 2 || deck[50] === 6 || deck[50] === 7) {
-    [deck[50], deck[Math.floor(Math.random() * deck.length)]] = [
+  while (
+    deck[deckSize - 2] === 1 ||
+    deck[deckSize - 2] === 2 ||
+    deck[deckSize - 2] === 6 ||
+    deck[deckSize - 2] === 7
+  ) {
+    [deck[deckSize - 2], deck[Math.floor(Math.random() * deck.length)]] = [
       deck[Math.floor(Math.random() * deck.length)],
-      deck[50]
+      deck[deckSize - 2]
     ];
   }
-  while (deck[51] === 1 || deck[51] === 2 || deck[51] === 6 || deck[51] === 7) {
-    [deck[51], deck[Math.floor(Math.random() * deck.length)]] = [
+  while (
+    deck[deckSize - 1] === 1 ||
+    deck[deckSize - 1] === 2 ||
+    deck[deckSize - 1] === 6 ||
+    deck[deckSize - 1] === 7
+  ) {
+    [deck[deckSize - 1], deck[Math.floor(Math.random() * deck.length)]] = [
       deck[Math.floor(Math.random() * deck.length)],
-      deck[51]
+      deck[deckSize - 1]
     ];
   }
   return deck;
 };
 
 const deckRacer = () => {
-  // create our deck of 52 cards
-  let deck = randomHand(27);
+  // create our deck of 27 cards
+  let deckSize = 27;
+
+  let deck = randomHand(deckSize);
   // clean up the deck so we don't have values 1, 2, 6, 7 in the first, second, last, or second to last positions
-  let cleanedDeck = checkStartAndEnd(deck);
+  let cleanedDeck = checkStartAndEnd(deck, deckSize);
   console.log("Our deck: ", cleanedDeck);
 
   //   keep track of how far along player is through deck (gameboard)
@@ -75,9 +87,12 @@ const deckRacer = () => {
   //   the size of our dice to roll
   let diceSize = 6;
 
-  // loop threw the deck until a player has reached the last card (card 27)
+  // loop threw the deck until a player has reached the last card (i.e. card 27)
   for (let j = 1; j < cleanedDeck.length; j++) {
-    while (playerTwoPosition < 27 && playerOnePosition < 27) {
+    while (
+      playerTwoPosition < cleanedDeck.length &&
+      playerOnePosition < cleanedDeck.length
+    ) {
       let firstRoll = rollDice(diceSize);
       let secondRoll = rollDice(diceSize);
 
@@ -94,6 +109,7 @@ const deckRacer = () => {
       } else if (firstRoll < cleanedDeck[j]) {
         playerOneTotalRolls++;
       }
+
       if (secondRoll >= cleanedDeck[j]) {
         playerTwoPosition += j;
       } else if (secondRoll < cleanedDeck[j]) {
